@@ -405,8 +405,8 @@
                         <div class="card-body">
                             <div class="mb-3 mt-3">
                             <label for="Payment Type" class="form-label">Payment Type</label>
-                             <select id="payment" class="form-control">
-                                 <option value="">Selcet Payment Type</option>
+                             <select id="payment" name="payment" class="form-control">
+                                 <option value="0">Selcet Payment Type</option>
                                 <option value="percent">Percentage</option>
                                 <option value="fixed">Fixed</option>
                             </select>
@@ -419,7 +419,7 @@
                             <label for="Tax" class="form-label mt-2">Tax</label>
                             <div class="col">
                                 <label for="tax-percentage" class="form-label">Tax In Percentage</label>
-                              <select class="form-select">
+                              <select class="form-select" id="tax_percentage" name="tax_percentage">
                                    <option disabled>select</option>
                                 <?php for($i=1; $i<=50;$i++){ ?>
                                 <option value="{{$i}}">{{$i}}%</option>
@@ -436,28 +436,22 @@
                               <label for="Tax" class="form-label mt-2">Tax</label>
                             <div class="col">
                                 <label for="tax-amount" class="form-label">Tax In Amount</label>
-                              <input type="number" class="form-control" placeholder="Enter Tax In Amount" name="tax">
+                              <input type="number" class="form-control" placeholder="Enter Tax In Amount" id="taxfixed" name="taxfixed">
                             </div>
                             </div>
                         </div>
                           
                         <div class="row mt-4">
-                             
-
-                            
                           </div>
                           <div class="mb-4 mt-2">
                             <label for="tax-type" class="form-label">Tax Type</label>
-                             <select class="form-select">
-                                
+                             <select class="form-select" id="tax_type" name="tax_type">  
                               <option value="percentage">Exclusive</option>
                               <option value="fixed">Inclusive</option>
                             </select>
                           </div>
                         </div>
-                    </div>
-                    
-                    
+                    </div> 
                 </div>
                 <div class="card">
                     <div class="card-body">
@@ -799,10 +793,13 @@
                 status1 = document.getElementById('status1').value;
                 submission_deadline = document.getElementById('submission_deadline').value;
                 earliest_intake_type = document.getElementById('earliest_intake_type').value;
-
-
-
-
+                
+                payment_type     = document.getElementById('payment').value;
+                ptype_fixed      = document.getElementById('fixed').value;
+                ptype_percentage = document.getElementById('percentage').value;
+                tax_type = document.getElementById('fixed').value;
+                taxfixed = document.getElementById('taxfixed').value;
+                tax_type = document.getElementById('tax_type').value;
 
                 formData.append('program_name', program_name);
                 formData.append('program_college_name', program_college_name);
@@ -833,8 +830,13 @@
                 formData.append('first_year_t_level_program_including_a_work_placement', first_year_t_level_program_including_a_work_placement);
                 formData.append('commission_break_down', commission_break_down);
                 formData.append('disclaimer', disclaimer);
-
-
+                formData.append('commission_type', payment_type);
+                formData.append('ptype_fixed', ptype_fixed);
+                formData.append('amount_percentage', ptype_percentage);
+                formData.append('tax_fixed', tax_type);
+                formData.append('amount_fixed', taxfixed);
+                formData.append('tax_percentage', tax_type);
+                formData.append('tax_type', tax_type);
 
                 var minimumLanguageTestScores = $('input[name="noOfTestScore"]').val();
                 var testScores = [];

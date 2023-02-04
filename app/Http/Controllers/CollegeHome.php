@@ -230,7 +230,7 @@ class CollegeHome extends Controller
 
     public function addProgramSubmit(Request $request)
     {
-
+        //return $request->input();
         $imageName = time() . '.' . $request->programs_logo->extension();
         $request->programs_logo->move(public_path('/images'), $imageName);
 
