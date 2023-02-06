@@ -885,7 +885,7 @@ class AgentHome extends Controller
 
 
             ->where('c.app_id', $app_id)->first();
-        // $doc_req = $data['student_details']->doc_requirement;
+         $doc_req = $data['student_details']->doc_requirement;
         $doc_req = json_decode($data['student_details']->doc_requirement, true);
  
         if (!empty($doc_req)) {
